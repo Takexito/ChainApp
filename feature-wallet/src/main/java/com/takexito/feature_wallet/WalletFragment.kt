@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
 import com.takexito.feature_wallet.databinding.WalletFragmentBinding
 import javax.inject.Inject
 
 class WalletFragment : Fragment() {
 
     private lateinit var viewModel: WalletViewModel
-    private lateinit var walletComponent: WalletComponent
 
     private val binding: WalletFragmentBinding
     get() = _binding ?: throw IllegalStateException("WalletFragmentBinding is null")
@@ -23,8 +21,7 @@ class WalletFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        walletComponent = DaggerWalletComponent.create()
-        walletComponent.inject(this)
+        WalletFeature.walletComponent.inject(this)
         _binding = WalletFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
